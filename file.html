@@ -1,0 +1,46 @@
+<!--Car image-->
+<!--Car type-->
+<!--Car description-->
+<!--Daily rental price: add a filter to print as currency-->
+<!--Rent now button-->
+<!--Add something else of your own choosing.-->
+<!--If the car is not available-->
+<!--Car image-->
+<!--Car type-->
+<!--Unavailable shown-->
+<!--If the rent now button is clicked it should update your objects amount available.-->
+
+<!DOCTYPE html>
+<html ng-app="CarinaRentals">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Car Rental Project</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="app.js"></script>
+	<link type="text/css" rel="stylesheet" href="app.css"/>
+
+</head>
+
+<body ng-controller="RentalController as rental">
+	<h1 class="text-center">Carina's Classic Car Rentals</h1>
+	<div class="text-center" ng-repeat="product in rental.products">
+		<img ng-src="{{product.image}}">
+		<h2>{{product.type}}</h2>
+		<div ng-show="product.canRent">
+			<h3>{{product.make}} {{product.model}}</h3>
+			<p>{{product.description}}</p>
+			<h4>{{product.price | currency}} per day</h4>
+			<button ng-show="product.canRent" ng-controller="RentController as rentCtrl" ng-click="rentCtrl.rentedCar(product)">Rent Now</button>
+		</div>
+		<h2 ng-hide="product.canRent">Unavailable</h2>
+	</div>
+</body>
+
+</html>
+
+
+
